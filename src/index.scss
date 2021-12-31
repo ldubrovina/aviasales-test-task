@@ -1,0 +1,637 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  font-family: "Open Sans", sans-serif;
+  color: #4a4a4a;
+
+  background-color: #f3f7fa;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.visually-hidden {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+
+  clip: rect(0 0 0 0);
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-header {
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  padding-bottom: 46px;
+}
+
+.page-header__logo {
+  width: 60px;
+  height: 60px;
+}
+
+.results {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 820px;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 234px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: #5b89a4 0 1px 4px 0;
+}
+
+.sidebar__fieldset {
+  width: 100%;
+  margin: 0;
+  margin-bottom: 29px;
+  padding: 0;
+
+  border: none;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.sidebar__legend {
+  margin-bottom: 11px;
+  padding: 0;
+  padding-right: 15px;
+  padding-left: 15px;
+
+  font-size: 12px;
+  line-height: 19px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  &--stops {
+    margin-bottom: 8px;
+  }
+}
+
+.sidebar__currency-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.sidebar__currency-label {
+  width: 68px;
+  padding-top: 9px;
+  padding-right: 20px;
+  padding-bottom: 8px;
+  padding-left: 20px;
+
+  font-size: 12px;
+  line-height: 22px;
+  text-align: center;
+
+  border: 1px solid #d2d5d6;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    background-color: #f2fcff;
+    border-color: #64b5f5;
+  }
+
+  &--first-col {
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+  &--second-col {
+    border-radius: 0;
+  }
+
+  &--third-col {
+    border: #d2d5d6 1px solid;
+    border-left: 0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &--third-col:hover {
+    background-color: #f2fcff;
+    border-color: #64b5f5;
+  }
+}
+
+input[type="radio"]:checked + label.sidebar__currency-label {
+  color: #ffffff;
+
+  background-color: #2196f3;
+  border: none;
+}
+
+.sidebar__stops-label {
+  position: relative;
+
+  display: block;
+  padding-top: 7px;
+  padding-right: 65px;
+  padding-bottom: 8px;
+  padding-left: 45px;
+
+  font-size: 13px;
+  line-height: 20px;
+
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    background-color: #f1fcff;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 16px;
+
+    width: 20px;
+    height: 19px;
+
+    border: 1px solid #d2d5d6;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  &:hover::before {
+    border-color: #2196f3;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 15px;
+
+    display: none;
+    width: 20px;
+    height: 20px;
+
+    background-image: url("./img/check.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+}
+
+.sidebar__stops-only {
+  position: absolute;
+  top: 0;
+  right: 15px;
+
+  display: none;
+
+  font-size: 11px;
+  line-height: 35px;
+  color: #2196f3;
+  text-transform: uppercase;
+
+  &:hover {
+    color: #ff6d00;
+  }
+}
+
+.sidebar__stops-label:hover .sidebar__stops-only {
+  display: inline;
+}
+
+input[type="checkbox"]:checked + label.sidebar__stops-label::before {
+  background-color: #f2fcff;
+  border-color: #2196f3;
+}
+
+input[type="checkbox"]:checked + label.sidebar__stops-label::after {
+  display: block;
+}
+
+.tickets-list {
+  display: flex;
+  flex-direction: column;
+  width: 566px;
+}
+
+.ticket {
+  position: relative;
+
+  display: flex;
+  margin-bottom: 20px;
+
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: #5b89a4 0 1px 4px 0;
+}
+
+.ticket__buy-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  padding: 25px 20px;
+
+  border-right: 1px solid #eceff1;
+}
+
+.ticket__logo {
+  width: 120px;
+  height: 35px;
+  margin-bottom: 20px;
+}
+
+.ticket__buy-btn {
+  display: block;
+  width: 160px;
+  padding: 8px 10px;
+
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  color: #ffffff;
+
+  background-color: #ff6d00;
+  border-radius: 5px;
+  box-shadow: #d64d08 0 1px 0 0, #000000 0 2px 1px 0;
+
+  &:hover,
+  &:active {
+    background-color: #ff8124;
+    box-shadow: #d64d08 0 1px 0 0, #000000 0 1px 5px 0;
+  }
+}
+
+.ticket__info-section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 25px;
+}
+
+.ticket__info-departure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  padding-right: 50px;
+}
+
+.ticket__info-arrival {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  padding-left: 50px;
+}
+
+.ticket__info-time {
+  width: 100%;
+  margin-bottom: 12px;
+
+  font-size: 32px;
+  line-height: 26px;
+  color: #4a4a4a;
+
+  &--departure {
+    text-align: left;
+  }
+
+  &--arrival {
+    text-align: right;
+  }
+}
+
+.ticket__info-location {
+  width: 100%;
+  margin: 0;
+
+  font-size: 12px;
+  line-height: 18px;
+  color: #4a4a4a;
+
+  &--origin {
+    text-align: left;
+  }
+
+  &--destination {
+    text-align: right;
+  }
+}
+
+.ticket__info-date {
+  width: 100%;
+
+  font-size: 12px;
+  line-height: 18px;
+  color: #8b9497;
+
+  &--departure {
+    text-align: left;
+  }
+
+  &--arrival {
+    text-align: right;
+  }
+}
+
+.ticket__info-stops {
+  position: absolute;
+  top: 26px;
+  left: 50%;
+
+  width: 110px;
+
+  transform: translateX(38%);
+}
+
+.ticket__info-stops-text {
+  position: relative;
+
+  display: block;
+  min-height: 24px;
+  margin: 0;
+
+  font-size: 10px;
+  line-height: 13px;
+  text-align: center;
+  color: #8b9497;
+  text-transform: uppercase;
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+
+    width: 96px;
+    height: 1px;
+
+    background-color: #d2d5d6;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: -2px;
+    bottom: -3px;
+
+    width: 13px;
+    height: 14px;
+
+    background-image: url("./img/plane.svg");
+    background-repeat: no-repeat;
+  }
+};
+
+@media (max-width: 900px) {
+  .results {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+  }
+
+  .sidebar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 566px;
+    margin-bottom: 20px;
+  }
+
+  .sidebar__fieldset {
+    width: 50%;
+    margin: 0;
+  }
+
+  .sidebar__legend {
+    &--currency {
+      margin-bottom: 17px;
+    }
+  }
+
+  .sidebar__currency-wrap {
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+
+  .sidebar__currency-label {
+    width: 100%;
+
+    border: 1px solid #d2d5d6;
+    border-radius: 0;
+
+    &:nth-child(2) {
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+
+    &:last-child {
+      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+  }
+
+  .sidebar__stops-label:hover .sidebar__stops-only {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .results {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+  }
+
+  .sidebar {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 280px;
+    margin-bottom: 20px;
+  }
+
+  .sidebar__fieldset {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .sidebar__legend {
+    &--currency {
+      margin-bottom: 10px;
+    }
+  }
+
+  .sidebar__currency-wrap {
+    flex-direction: row;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .sidebar__currency-label {
+    &:nth-child(2) {
+      border-top-left-radius: 5px;
+      border-top-right-radius: 0;
+    }
+
+    &:last-child {
+      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  .sidebar__currency-label {
+    width: 68px;
+    padding-top: 9px;
+    padding-right: 20px;
+    padding-bottom: 8px;
+    padding-left: 20px;
+
+    border: 1px solid #d2d5d6;
+    border-radius: 5px;
+
+    &--first-col {
+      border-right: 0;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &--second-col {
+      border-radius: 0;
+    }
+
+    &--third-col {
+      border: #d2d5d6 1px solid;
+      border-left: 0;
+      border-radius: 5px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  .tickets-list {
+    width: 280px;
+  }
+
+  .ticket {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-top: 25px;
+    padding-bottom: 10px;
+  }
+
+  .ticket__buy-section {
+    width: 100%;
+    padding: 0 10px;
+
+    border-right: none;
+  }
+
+  .ticket__logo {
+    margin-bottom: 15px;
+  }
+
+  .ticket__buy-btn {
+    width: 160px;
+    padding: 8px 10px;
+  }
+
+  .ticket__info-section {
+    flex-wrap: wrap;
+    width: 100%;
+    padding-top: 5px;
+    padding-right: 15px;
+    padding-bottom: 20px;
+    padding-left: 15px;
+  }
+
+  .ticket__info-departure {
+    order: 2;
+    padding-right: 10px;
+  }
+
+  .ticket__info-arrival {
+    order: 3;
+    width: 50%;
+    padding-left: 10px;
+  }
+
+  .ticket__info-time {
+    margin-bottom: 10px;
+  }
+
+  .ticket__info-stops {
+    position: static;
+    top: 0;
+    left: 0;
+
+    order: 1;
+    width: 100%;
+    padding: 20px;
+
+    transform: none;
+  }
+
+  .ticket__info-stops-text {
+    &::before {
+      left: 50%;
+
+      transform: translateX(-60%);
+    }
+
+    &::after {
+      right: 50px;
+      bottom: -3px;
+    }
+  }
+}
